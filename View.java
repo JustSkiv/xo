@@ -41,6 +41,7 @@ public class View extends JFrame implements ActionListener{
     String command = actionEvent.getActionCommand();
     Integer buttonNumber = Integer.valueOf(command);
     b[buttonNumber].setText("X");
+    b[buttonNumber].setEnabled(false);
 
     Integer i = 0;
     String[] buttons = new String[9];
@@ -48,6 +49,6 @@ public class View extends JFrame implements ActionListener{
       buttons[i] = button.getText();
       i++;
     }
-     Controller.analyze(buttons);
+     Controller.step(buttons);
   }
 }
