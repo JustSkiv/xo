@@ -8,13 +8,9 @@ import java.awt.event.ActionListener;
  * Time: 4:26
  * To change this template use File | Settings | File Templates.
  */
-public class Controller implements ActionListener{
-  public String getTest(String str){
-    return str + " test";
-  }
-
-  public void actionPerformed(ActionEvent actionEvent) {
-    String s = actionEvent.toString();
-    System.out.println("asd: " + s);
+public class Controller {
+  public static String analyze(String[] buttons){
+    System.out.println(buttons[2]);
+    return "asd";
   }
 }
