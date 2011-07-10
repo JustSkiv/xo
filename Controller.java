@@ -16,16 +16,10 @@ public class Controller {
       //return;
     }
     if (lookForHazards(buttons) != -1) {
-      System.out.println("Danger!!!");//пользователь победил
+      System.out.println("Danger!!!");//предотвращаем победу пользователя на слелующем шаге
       //return;
     }
 
-  }
-
-  public static Integer analyze(String[] buttons) {
-    if (isPlayerWin(buttons))
-      System.out.println("Win!!!");
-    return 0;
   }
 
   public static boolean isPlayerWin(String[] buttons) {
