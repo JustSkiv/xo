@@ -13,11 +13,12 @@ import java.lang.reflect.Array;
  * Time: 4:23
  * To change this template use File | Settings | File Templates.
  */
-public class View extends JFrame implements ActionListener{
+public class View extends JFrame implements ActionListener {
   String field_x = "X";
   String field_o = "O";
   String field_n = ".";
   JButton[] b = new JButton[9];
+
   public View() {
     Controller controller = new Controller();
 
@@ -38,17 +39,21 @@ public class View extends JFrame implements ActionListener{
   }
 
   public void actionPerformed(ActionEvent actionEvent) {
+    //определяем, какая кнопка была нажата
     String command = actionEvent.getActionCommand();
     Integer buttonNumber = Integer.valueOf(command);
     b[buttonNumber].setText("X");
     b[buttonNumber].setEnabled(false);
 
+    //формируем массив, для представления о текущей ситуации на поле
     Integer i = 0;
     String[] buttons = new String[9];
-    for(JButton button : b) {
+    for (JButton button : b) {
       buttons[i] = button.getText();
       i++;
     }
-     Controller.step(buttons);
+
+    //скармливаем наш массив контроллеру
+    Controller.step(buttons);
   }
 }
