@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.lang.reflect.Array;
 
 /**
  * Created by IntelliJ IDEA.
@@ -14,9 +13,9 @@ import java.lang.reflect.Array;
  * To change this template use File | Settings | File Templates.
  */
 public class View extends JFrame implements ActionListener {
-  String field_x = "X";
-  String field_o = "O";
-  String field_n = ".";
+  final String PLAYER_LABEL = "Х";
+  final String AI_LABEL = "O";
+  final String NEUTRAL_LABEL = "O";
   JButton[] b = new JButton[9];
 
   public View() {
@@ -27,7 +26,7 @@ public class View extends JFrame implements ActionListener {
 
     add(panel);
     for (int i = 0; i < 9; i++) {
-      b[i] = new JButton(field_n);
+      b[i] = new JButton(NEUTRAL_LABEL);
       b[i].addActionListener(this);
       b[i].setActionCommand(Integer.toString(i));
       panel.add(b[i]);
@@ -53,7 +52,20 @@ public class View extends JFrame implements ActionListener {
       i++;
     }
 
-    //скармливаем наш массив контроллеру
-    Controller.step(buttons);
+    //скармливаем наш массив контроллеру, который определяет победу / выигрыш.
+    //либо возвращает номер клетки, в которую решил сделать ход компьютер
+    int step = Controller.step(buttons);
+    switch (step) {
+      case Controller.PLAYER_WIN:
+        // do win
+        break;
+      case Controller.PLAYER_LOSE:
+        // do lose
+        break;
+      default:
+        b[step].setText(AI_LABEL);
+        b[step].setEnabled(false);
+    }
+
   }
 }

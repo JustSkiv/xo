@@ -10,20 +10,30 @@ import java.awt.event.ActionListener;
  * To change this template use File | Settings | File Templates.
  */
 public class Controller {
-  public static void step(String[] buttons) {
+  static int dangerButton;
+  public static final int PLAYER_WIN = -1;
+  public static final int PLAYER_LOSE = -2;
+
+
+  public static int step(String[] buttons) {
     if (isPlayerWin(buttons)) {
       System.out.println("Win!!!");//пользователь победил
-      //return;
-    }
-    if (lookForHazards(buttons) != -1) {
-      System.out.println("Danger!!!");//предотвращаем победу пользователя на слелующем шаге
-      //return;
+      return PLAYER_WIN;
     }
 
+    dangerButton = lookForHazards(buttons);
+    if (dangerButton != -1) {
+      System.out.println("Danger!!!");//предотвращаем победу пользователя на слелующем шаге
+      return dangerButton;
+    }
+    return -1;
   }
 
   public static boolean isPlayerWin(String[] buttons) {
-    if ((buttons[0].equals("X") && buttons[1].equals("X") && buttons[2].equals("X")) || //по горизонтали
+    Boolean horWin[] = new Boolean[10];
+    horWin[0] = buttons[0].equals("X") && buttons[1].equals("X") && buttons[2].equals("X");
+
+    if (horWin[0] || //по горизонтали
         (buttons[3].equals("X") && buttons[4].equals("X") && buttons[5].equals("X")) ||
         (buttons[6].equals("X") && buttons[7].equals("X") && buttons[8].equals("X")) ||
 
