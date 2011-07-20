@@ -15,7 +15,7 @@ import java.awt.event.ActionListener;
 public class View extends JFrame implements ActionListener {
   final String PLAYER_LABEL = "Х";
   final String AI_LABEL = "O";
-  final String NEUTRAL_LABEL = "O";
+  final String NEUTRAL_LABEL = ".";
   JButton[] b = new JButton[9];
 
   public View() {

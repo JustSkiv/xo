@@ -30,21 +30,28 @@ public class Controller {
   }
 
   public static boolean isPlayerWin(String[] buttons) {
-    Boolean horWin[] = new Boolean[10];
-    horWin[0] = buttons[0].equals("X") && buttons[1].equals("X") && buttons[2].equals("X");
+    Boolean[] vertWin = new Boolean[3], horWin = new Boolean[3], diagWin = new Boolean[2];
 
-    if (horWin[0] || //по горизонтали
-        (buttons[3].equals("X") && buttons[4].equals("X") && buttons[5].equals("X")) ||
-        (buttons[6].equals("X") && buttons[7].equals("X") && buttons[8].equals("X")) ||
+    //определяем выигрышные положения
 
-        (buttons[0].equals("X") && buttons[3].equals("X") && buttons[6].equals("X")) || //по вертикали
-        (buttons[1].equals("X") && buttons[4].equals("X") && buttons[7].equals("X")) ||
-        (buttons[2].equals("X") && buttons[5].equals("X") && buttons[8].equals("X")) ||
+    //по горизонтали:
+    horWin[0] = buttons[0].equals(buttons[1]) && buttons[1].equals(buttons[2]);
+    horWin[1] = buttons[3].equals(buttons[4]) && buttons[4].equals(buttons[5]);
+    horWin[2] = buttons[6].equals(buttons[7]) && buttons[7].equals(buttons[8]);
 
-        (buttons[0].equals("X") && buttons[4].equals("X") && buttons[8].equals("X")) || //по диагонали
-        (buttons[2].equals("X") && buttons[4].equals("X") && buttons[6].equals("X"))
-        )
-      return true;
+    //по вертикали
+    vertWin[0] = buttons[0].equals(buttons[3]) && buttons[3].equals(buttons[6]);
+    vertWin[1] = buttons[1].equals(buttons[4]) && buttons[4].equals(buttons[7]);
+    vertWin[2] = buttons[2].equals(buttons[5]) && buttons[5].equals(buttons[8]);
+
+    //по диагонали
+    diagWin[0] = buttons[0].equals(buttons[4]) && buttons[4].equals(buttons[8]);
+    diagWin[1] = buttons[2].equals(buttons[4]) && buttons[4].equals(buttons[6]);
+
+    if (horWin[0] || horWin[1] || horWin[2]) {
+      if (buttons[0].equals("X"))
+        return true;
+    }
     return false;
   }
 
